@@ -1,4 +1,6 @@
 import os
+import logging
+from azure.storage.models import Logging
 from flask import Flask, request, redirect
 from azure.storage import CloudStorageAccount
 from azure.storage.table import TableService, Entity
@@ -17,7 +19,7 @@ def shortlinkredirect(shortlink):
         shortlinkentity = table_service.get_entity(table_name=tablename, partition_key=partitionkey, row_key=rowkey)
         target = shortlinkentity.target
     except Exception as e:
-        print('Error occurred.', e)
+        logging.log('Error occurred.', e)
     finally:
         if request.query_string != b'':
             target = target + "?" + request.query_string.decode('utf-8')
