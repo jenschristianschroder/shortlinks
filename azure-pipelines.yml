@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: 'd1965113-b6dc-4803-960a-2cd1096f0663'
+  azureSubscription: $(AzureSubscription)
 
   # Function app name
   functionAppName: 'shortlinks'
@@ -81,6 +81,7 @@ stages:
             displayName: 'Azure functions app deploy'
             inputs:
               azureSubscription: '$(azureSubscription)'
-              appType: functionAppLinux
-              appName: $(functionAppName)
+              appType: 'functionAppLinux'
+              appName: '$(functionAppName)'
               package: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+              appSettings: '-Hostname $(Hostname) -StorageAccount $(StorageAccount) -StorageKey $(StorageKey)'
