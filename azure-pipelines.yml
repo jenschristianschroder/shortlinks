@@ -8,7 +8,7 @@ trigger:
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '$(AzureSubscription)'
+  azureSubscription: 'd1965113-b6dc-4803-960a-2cd1096f0663'
 
   # Function app name
   functionAppName: 'shortlinks'
